@@ -1,3 +1,6 @@
+#Equipo 11
+#Back Davdi Valadez Gutierrez
+#Front Enrique Eduardo Lozano Aceves
 import pandas as pd
 
 def recorridoCadena(cadena, longitud_subcadena, inicio_subcadena):
