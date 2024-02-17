@@ -15,13 +15,15 @@ class CSVLoaderApp(App):
         self.file_chooser = FileChooserListView()
         self.root.add_widget(self.file_chooser)
         
-        load_button = Button(text="Cargar archivo CSV", size_hint=(None, None), size=(200, 50))
+        load_button = Button(text="Cargar archivo CSV", size_hint=(None,None), size=(200, 50))
+        load_button.pos_hint = {'center_x': 0.5}
         load_button.bind(on_press=self.load_csv)
         self.root.add_widget(load_button)
 
+        '''
         generar_csv = Button(text="Generar archivo CSV", size_hint=(None, None), size=(200, 50))
         generar_csv.bind(on_press=self.load_csv)
-        self.root.add_widget(generar_csv)
+        self.root.add_widget(generar_csv)'''
         
         self.info_label = Label(text="")
         self.root.add_widget(self.info_label)
@@ -38,19 +40,20 @@ class CSVLoaderApp(App):
 
     def show_popup(self):
         content = BoxLayout(orientation='vertical')
-        popup = Popup(title='Select Cell', content=content, size_hint=(None, None), size=(300, 200))
+        popup = Popup(title='Seleccionar Celda', content=content, size_hint=(None, None), size=(300, 250))
         
-        row_label = Label(text="Row:")
+        row_label = Label(text="Fila:")
         content.add_widget(row_label)
-        self.row_input = TextInput()
+        self.row_input = TextInput(size_hint_y=None, height=40)
         content.add_widget(self.row_input)
         
-        col_label = Label(text="Column:")
+        col_label = Label(text="Columna:")
         content.add_widget(col_label)
-        self.col_input = TextInput()
+        self.col_input = TextInput(size_hint_y=None, height=40)
         content.add_widget(self.col_input)
         
-        select_button = Button(text="Select Cell", size_hint=(None, None), size=(150, 50))
+        select_button = Button(text="Seleccionar Celda", size_hint=(None, None), size=(150, 50))
+        select_button.pos_hint = {'center_x': 0.5}
         select_button.bind(on_press=self.select_cell)
         content.add_widget(select_button)
         
@@ -121,7 +124,7 @@ class CSVLoaderApp(App):
             print("Cadenas modificadas:", '\n'.join(cadenas_modificadas))
             cadenas_modificadas_texto = "\n".join(cadenas_modificadas)
             subcadenas_texto = "\n".join(subcadenas)
-            self.info_label.text = f"Cadenas modificadas: {cadenas_modificadas_texto}\nSubcadenas: {subcadenas_texto}"
+            self.info_label.text = f"\n\n\nCadenas modificadas:\n{cadenas_modificadas_texto}\n\nSubcadenas:\n{subcadenas_texto}"
 
 
         except ValueError:
