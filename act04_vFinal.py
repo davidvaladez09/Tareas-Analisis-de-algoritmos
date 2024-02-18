@@ -7,7 +7,8 @@ from kivy.uix.popup import Popup
 from kivy.uix.filechooser import FileChooserListView
 from kivy.uix.textinput import TextInput
 from kivy.uix.gridlayout import GridLayout
-
+import time
+import matplotlib.pyplot as plt
 
 class EdicionCadenasApp(App):
     def build(self):
@@ -128,7 +129,6 @@ class EdicionCadenasApp(App):
             self.info_label.text = f"Celda Seleccionada: {cadena}" #Muestra la celda que se selecciono 
 
             lista_posicion = self.df['posicion'].tolist() #Todos los elementos de la columna posicion los ingresa a una lista
-            #lista_referencia = self.df['referencia'].tolist()
             lista_alteracion = self.df['alteracion'].tolist() #Todos los elementos de la columna alteracion los ingresa a una lista
 
             #Define la longitud de la subcadena  y el inicio de la misma
@@ -137,7 +137,6 @@ class EdicionCadenasApp(App):
 
             subcadenas = self.recorridoCadena(cadena, longitud_subcadena, inicio_subcadena) #Inicializa con el resultado de la funcion recorridoCadena que retorna la lista de las subcadenas
             cadenas_modificadas = [cadena] #Inicializa con la lista de la cadena original
-            #modificaciones = []
 
             for i in range(len(lista_posicion)): #Itera sobre en la lista de lista_posicion
                 posicion_modificar = lista_posicion[i] #Accede al caracter de lista_alteracion que tiene el caracter nuevo que se modificara en esa posicion
@@ -145,11 +144,6 @@ class EdicionCadenasApp(App):
 
                 cadena_modificada = self.modificarCaracter(cadenas_modificadas[-1], posicion_modificar, nuevo_caracter) #Modifica en la cadena original toma como parametro la cadena original
                 cadenas_modificadas.append(cadena_modificada) #Inserta las cadenas modificadas a la lista
-
-                print("Cadena modificada:", cadena_modificada) #Muestra en consola las cadenas modificadas
-
-            print('\n')
-            print("Cadenas modificadas:", '\n'.join(cadenas_modificadas)) #Muestra en consola la lista de cadenas modificadas
 
             cadenas_modificadas_texto = "\n".join(cadenas_modificadas) #Convierte la lista en en texto para utilizarlo en la ventana de la aplicacion
             subcadenas_texto = "\n".join(subcadenas) #Convierte la lista en en texto para utilizarlo en la ventana de la aplicacion
@@ -164,6 +158,26 @@ class EdicionCadenasApp(App):
         except ValueError:
             self.info_label.text = "Las filas o columnas no son validas."
 
-
 if __name__ == "__main__":
-    EdicionCadenasApp().run()
+    lista_tiempos = []
+    
+    while True:
+        opcion = input('Desea continuar(si/no): ')
+
+        if opcion != 'si':
+            break
+
+        tiempoInicio = time.time()
+
+        EdicionCadenasApp().run()
+
+        tiempoFin = time.time()
+
+        tiempoEjecucion = tiempoFin - tiempoInicio
+        lista_tiempos.append(tiempoEjecucion)
+
+    plt.plot(lista_tiempos)
+    plt.xlabel('Ejecución')
+    plt.ylabel('Tiempo (segundos)')
+    plt.title('Tiempo de ejecución por ejecución')
+    plt.show()
