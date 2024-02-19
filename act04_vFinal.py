@@ -1,3 +1,6 @@
+#Equipo 11
+#Back David Valadez Gutierrez
+#Front Enrique Eduardo Lozano Aceves
 import pandas as pd
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
