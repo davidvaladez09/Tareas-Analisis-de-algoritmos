@@ -24,6 +24,7 @@ def dividir(listaNumeros, texto_subproblemas, texto_resultado):
         print("\nMitad 1: " + str(listaNumeros[:mitad]) + " Mitad 2: " + str(listaNumeros[mitad:]))
         texto_subproblemas.insert(tk.END, "Mitad 1: " + str(listaNumeros[:mitad]) + " Mitad 2: " + str(listaNumeros[mitad:]) + "\n")
 
+        #Recursividad
         suma_izquierda = dividir(listaNumeros[:mitad], texto_subproblemas, texto_resultado)
         suma_derecha = dividir(listaNumeros[mitad:], texto_subproblemas, texto_resultado)
         
