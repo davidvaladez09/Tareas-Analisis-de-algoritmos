@@ -11,7 +11,7 @@ def numerosAleatorios(n):
 
     return listaNumeros
 
-#Paradigma divide y venceras
+#2. Paradigma divide y venceras
 def dividir(listaNumeros, texto_subproblemas, texto_resultado):
     if len(listaNumeros) == 1: #Identificar si alguna mita es de un solo numero 
         print("\nSuma: " + str(listaNumeros[0]))
@@ -24,11 +24,11 @@ def dividir(listaNumeros, texto_subproblemas, texto_resultado):
         print("\nMitad 1: " + str(listaNumeros[:mitad]) + " Mitad 2: " + str(listaNumeros[mitad:]))
         texto_subproblemas.insert(tk.END, "Mitad 1: " + str(listaNumeros[:mitad]) + " Mitad 2: " + str(listaNumeros[mitad:]) + "\n")
 
-        #Recursividad
+        #4. Recursividad
         suma_izquierda = dividir(listaNumeros[:mitad], texto_subproblemas, texto_resultado)
         suma_derecha = dividir(listaNumeros[mitad:], texto_subproblemas, texto_resultado)
         
-        #Muestra la suma de los subproblemas
+        #3. Muestra la suma de los subproblemas
         print("\nSuma: " + str(suma_izquierda) + " + " + str(suma_derecha))
         texto_subproblemas.insert(tk.END, "Suma: " + str(suma_izquierda) + " + " + str(suma_derecha) + "\n")
         
@@ -50,7 +50,7 @@ listaNumerosAleatorios = numerosAleatorios(10)
 
 print('\nLista de numeros', listaNumerosAleatorios)
 
-# GUI TKINTER
+#1. GUI TKINTER
 root = tk.Tk()
 root.configure(bg='black')
 root.geometry("440x520")
